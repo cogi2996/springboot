@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //				"com.luv2code.util"}
 //)
 
-@SpringBootApplication
+@SpringBootApplication(
+		scanBasePackages = {"com.luv2code.util.common.Coach","com.luv2code.util.common.CricketCoach"}
+)
 public class SpringcoredemoApplication {
 
 	public static void main(String[] args) {
