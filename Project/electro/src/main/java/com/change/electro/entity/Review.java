@@ -15,4 +15,14 @@ public class Review {
     @Column(name = "time")
     private Date time;
 
+    // user đã review
+    @ManyToMany
+    @JoinColumn(name="user_id")
+    private User reviewAuthor;
+
+    // product của review này
+    @OneToOne
+    @JoinColumn(name="product_id")
+    private Product reviewProduct;
+
 }

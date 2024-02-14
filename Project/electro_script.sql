@@ -46,21 +46,21 @@ CREATE TABLE category (
 CREATE TABLE Product (
     product_id VARCHAR(100) PRIMARY KEY,
     category_id VARCHAR(100),
+    order_item_id VARCHAR(100),
     name NVARCHAR(255),
     description NVARCHAR(1000),
     price DECIMAL(10,2),
     quantity_in_stock INT,
     image_url VARCHAR(255),
-    FOREIGN KEY (category_id) REFERENCES Category(category_id)
+    FOREIGN KEY (category_id) REFERENCES Category(category_id),
+    FOREIGN KEY (order_item_id) REFERENCES order_item(order_item_id)
 );
 CREATE TABLE cart_item (
     cart_item_id VARCHAR(100) PRIMARY KEY,
     cart_id VARCHAR(100),
-    order_item_id VARCHAR(100),
     product_id VARCHAR(100),
     quantity INT,
     FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
-    FOREIGN KEY (order_item_id) REFERENCES order_item(order_item_id),
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
 CREATE TABLE Review (
@@ -71,6 +71,8 @@ CREATE TABLE Review (
     FOREIGN KEY (product_id) REFERENCES Product(product_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+
+
 
 
 
