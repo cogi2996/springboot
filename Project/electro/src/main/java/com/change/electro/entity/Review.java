@@ -2,7 +2,9 @@ package com.change.electro.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="Review")
@@ -14,15 +16,25 @@ public class Review {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time")
     private Date time;
+    @Column(name="text")
+    private String text;
 
-    // user đã review
+
+    // Những người đã bình luận bài Product này
     @ManyToMany
-    @JoinColumn(name="user_id")
-    private User reviewAuthor;
+    @JoinTable(name="Review",joinColumns = @JoinColumn(name="review_id"),inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<User> reviewUsers;
 
-    // product của review này
-    @OneToOne
-    @JoinColumn(name="product_id")
-    private Product reviewProduct;
+    // Các sản phẩm đã được review
+    @ManyToMany(mappedBy = "reviews")
+    private List<Product> products;
 
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", time=" + time +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

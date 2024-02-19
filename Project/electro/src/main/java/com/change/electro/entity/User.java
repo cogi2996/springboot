@@ -26,9 +26,8 @@ public class User {
     @Column(name = "role")
     private int role;
 
-    // Các order của user
-    @OneToMany
-    @JoinColumn(name="order_id")
+    //  User đã order
+    @OneToMany(mappedBy = "orderUser")
     private List<Order> orders;
 
     //Giỏ hàng của user
@@ -36,9 +35,23 @@ public class User {
     @JoinColumn(name="cart_id")
     private Cart userCart;
 
-    // các review của user
-    @ManyToMany(mappedBy = "reviewAuthor")
+    // Các product mà user đã review
+    @ManyToMany(mappedBy = "reviewers")
+    private List<Product> products;
+
+    // Các bình luận mà user đã bình luận
+    @ManyToMany(mappedBy = "reviewUsers")
     private List<Review> reviews;
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }

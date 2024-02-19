@@ -55,6 +55,7 @@ CREATE TABLE Product (
     FOREIGN KEY (category_id) REFERENCES Category(category_id),
     FOREIGN KEY (order_item_id) REFERENCES order_item(order_item_id)
 );
+
 CREATE TABLE cart_item (
     cart_item_id VARCHAR(100) PRIMARY KEY,
     cart_id VARCHAR(100),
@@ -63,11 +64,13 @@ CREATE TABLE cart_item (
     FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
+
 CREATE TABLE Review (
     review_id INT PRIMARY KEY AUTO_INCREMENT,
     product_id VARCHAR(100),
     user_id VARCHAR(100),
     time DATETIME,
+    text VARCHAR(100),
     FOREIGN KEY (product_id) REFERENCES Product(product_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
